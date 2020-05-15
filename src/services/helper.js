@@ -100,7 +100,7 @@ let methodsHelper = {
   search ( haystack, needle ) {
     return haystack.toString().replace(
       new RegExp('(' + this.pregQuote(needle) + ')', 'ig'),
-      '<span class="highlight">$1</span>'
+      '<mark class="highlight">$1</mark>'
     )
   },
   print () {

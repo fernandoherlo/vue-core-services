@@ -6135,7 +6135,7 @@ var methodsHelper = {
     return (str + '').replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:])/g, "\\$1");
   },
   search: function search(haystack, needle) {
-    return haystack.toString().replace(new RegExp('(' + this.pregQuote(needle) + ')', 'ig'), '<span class="highlight">$1</span>');
+    return haystack.toString().replace(new RegExp('(' + this.pregQuote(needle) + ')', 'ig'), '<mark class="highlight">$1</mark>');
   },
   print: function print() {
     window.print();
