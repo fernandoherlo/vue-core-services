@@ -130,6 +130,46 @@ let api = new Vue({
       })
     },
 
+    // UPLOAD
+    upload (url, item, _callback) {
+      // Degub
+      this.$log.debug('API', url)
+      // Data
+      var data = this.item.upload
+      var options = {
+        url: url,
+        method: 'PUT',
+        data: data
+      }
+      this.$http.axios(options).then((response) => {
+        // CallBack
+        _callback(response.data)
+        // Notify
+        if (this.$notify){
+          this.$notify({
+            group: 'global',
+            type: 'warn',
+            title: 'Upload',
+            text: 'Upload element successfull!'
+          })
+        }
+      }, (error) => {
+        this.$log.info('SERVICES -> API -> save()')
+        this.$log.error(error)
+        // CallBack
+        _callback(null)
+        // Notify
+        if (this.$notify){
+          this.$notify({
+            group: 'global',
+            type: 'error',
+            title: 'Error',
+            text: 'Error on API'
+          })
+        }
+      })
+    },
+
     // DELETE
     delete (url, item, _callback, wait, id_parent) {
       // Degub
