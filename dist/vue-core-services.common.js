@@ -5902,7 +5902,7 @@ var api = new external_commonjs_vue_commonjs2_vue_root_Vue_default.a({
 
       var options = {
         url: url,
-        method: 'PUT',
+        method: 'POST',
         data: data
       };
       this.$http.axios(options).then(function (response) {

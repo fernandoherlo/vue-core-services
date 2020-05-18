@@ -142,7 +142,7 @@ let api = new Vue({
       }
       var options = {
         url: url,
-        method: 'PUT',
+        method: 'POST',
         data: data
       }
       this.$http.axios(options).then((response) => {
