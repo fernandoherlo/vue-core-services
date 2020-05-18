@@ -135,7 +135,11 @@ let api = new Vue({
       // Degub
       this.$log.debug('API', url)
       // Data
-      var data = this.item.upload
+      var data = {}
+      // Fields
+      for (var propertyName in item) {
+        data[propertyName] = item[propertyName]
+      }
       var options = {
         url: url,
         method: 'PUT',
