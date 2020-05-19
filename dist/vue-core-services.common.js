@@ -5904,9 +5904,7 @@ var api = new external_commonjs_vue_commonjs2_vue_root_Vue_default.a({
         url: url + '/upload',
         method: 'POST',
         data: data,
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
+        headers: item.form.getHeaders()
       };
       this.$http.axios(options).then(function (response) {
         // CallBack

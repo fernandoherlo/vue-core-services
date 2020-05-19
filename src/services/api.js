@@ -144,7 +144,7 @@ let api = new Vue({
         url: url + '/upload',
         method: 'POST',
         data: data,
-        headers: { 'Content-Type': 'multipart/form-data' }
+        headers: item.form.getHeaders()
       }
       this.$http.axios(options).then((response) => {
         // CallBack
