@@ -5893,17 +5893,18 @@ var api = new external_commonjs_vue_commonjs2_vue_root_Vue_default.a({
 
       // Degub
       this.$log.debug('API', url); // Data
+      // var data = item.formData
 
-      var data = item.formData; // var data = {}
-      // // Fields
-      // for (var propertyName in item) {
-      //   data[propertyName] = item[propertyName]
-      // }
+      var form = new FormData(); // Fields
+
+      for (var propertyName in item) {
+        form.append(propertyName, item[propertyName]);
+      }
 
       var options = {
         url: url + '/upload',
         method: 'POST',
-        data: data
+        data: form
       };
       this.$http.axios(options).then(function (response) {
         // CallBack
