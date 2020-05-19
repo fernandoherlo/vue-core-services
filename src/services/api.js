@@ -143,7 +143,8 @@ let api = new Vue({
       var options = {
         url: url + '/upload',
         method: 'POST',
-        data: data
+        data: data,
+        headers: { 'Content-Type': 'multipart/form-data' }
       }
       this.$http.axios(options).then((response) => {
         // CallBack
