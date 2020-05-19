@@ -141,7 +141,7 @@ let api = new Vue({
         data[propertyName] = item[propertyName]
       }
       var options = {
-        url: url,
+        url: url + '/upload',
         method: 'POST',
         data: data
       }
