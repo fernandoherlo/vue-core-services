@@ -169,10 +169,37 @@ let api = new Vue({
           })
         }
       }, (error) => {
-        this.$log.info('SERVICES -> API -> save()')
+        this.$log.info('SERVICES -> API -> upload()')
         this.$log.error(error)
         // CallBack
         _callback(null)
+        // Notify
+        if (this.$notify){
+          this.$notify({
+            group: 'global',
+            type: 'error',
+            title: 'Error',
+            text: 'Error on API'
+          })
+        }
+      })
+    },
+
+    // DOWNLOAD
+    download (url) {
+      // Degub
+      this.$log.debug('API', url)
+      
+      var options = {
+        url: url,
+        method: 'GET'
+      }
+      this.$http.axios(options).then((response) => {
+        window.open(response.data.url, '_blank')
+      
+      }, (error) => {
+        this.$log.info('SERVICES -> API -> download()')
+        this.$log.error(error)
         // Notify
         if (this.$notify){
           this.$notify({

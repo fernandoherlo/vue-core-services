@@ -5930,7 +5930,7 @@ var api = new external_commonjs_vue_commonjs2_vue_root_Vue_default.a({
           });
         }
       }, function (error) {
-        _this4.$log.info('SERVICES -> API -> save()');
+        _this4.$log.info('SERVICES -> API -> upload()');
 
         _this4.$log.error(error); // CallBack
 
@@ -5948,9 +5948,37 @@ var api = new external_commonjs_vue_commonjs2_vue_root_Vue_default.a({
         }
       });
     },
+    // DOWNLOAD
+    download: function download(url) {
+      var _this5 = this;
+
+      // Degub
+      this.$log.debug('API', url);
+      var options = {
+        url: url,
+        method: 'GET'
+      };
+      this.$http.axios(options).then(function (response) {
+        window.open(response.data.url, '_blank');
+      }, function (error) {
+        _this5.$log.info('SERVICES -> API -> download()');
+
+        _this5.$log.error(error); // Notify
+
+
+        if (_this5.$notify) {
+          _this5.$notify({
+            group: 'global',
+            type: 'error',
+            title: 'Error',
+            text: 'Error on API'
+          });
+        }
+      });
+    },
     // DELETE
     delete: function _delete(url, item, _callback, wait, id_parent) {
-      var _this5 = this;
+      var _this6 = this;
 
       // Degub
       this.$log.debug('API', url);
@@ -5972,8 +6000,8 @@ var api = new external_commonjs_vue_commonjs2_vue_root_Vue_default.a({
         _callback(response.data); // Notify
 
 
-        if (_this5.$notify) {
-          _this5.$notify({
+        if (_this6.$notify) {
+          _this6.$notify({
             group: 'global',
             type: 'success',
             title: 'Delete',
@@ -5981,13 +6009,13 @@ var api = new external_commonjs_vue_commonjs2_vue_root_Vue_default.a({
           });
         }
       }, function (error) {
-        _this5.$log.info('SERVICES -> API -> delete()');
+        _this6.$log.info('SERVICES -> API -> delete()');
 
-        _this5.$log.error(error); // Notify
+        _this6.$log.error(error); // Notify
 
 
-        if (_this5.$notify) {
-          _this5.$notify({
+        if (_this6.$notify) {
+          _this6.$notify({
             group: 'global',
             type: 'error',
             title: 'Error',
