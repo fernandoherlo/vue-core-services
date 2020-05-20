@@ -186,12 +186,12 @@ let api = new Vue({
     },
 
     // DOWNLOAD
-    download (url) {
+    download (url, item) {
       // Degub
       this.$log.debug('API', url)
       
       var options = {
-        url: url,
+        url: url + '/download/' + item.id,
         method: 'GET'
       }
       this.$http.axios(options).then((response) => {

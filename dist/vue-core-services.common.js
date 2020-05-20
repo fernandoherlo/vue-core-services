@@ -5949,13 +5949,13 @@ var api = new external_commonjs_vue_commonjs2_vue_root_Vue_default.a({
       });
     },
     // DOWNLOAD
-    download: function download(url) {
+    download: function download(url, item) {
       var _this5 = this;
 
       // Degub
       this.$log.debug('API', url);
       var options = {
-        url: url,
+        url: url + '/download/' + item.id,
         method: 'GET'
       };
       this.$http.axios(options).then(function (response) {
