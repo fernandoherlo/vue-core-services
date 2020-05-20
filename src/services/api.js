@@ -139,7 +139,19 @@ let api = new Vue({
       var form = new FormData()
       // Fields
       for (var propertyName in item) {
-        form.append(propertyName, item[propertyName])
+        if (propertyName == 'file') {
+          if (item[propertyName].length > 0) {
+
+            for (var i = 0; i < item[propertyName].length; i++) {
+              form.append(propertyName, item[propertyName][i])
+            }
+
+          } else {
+            form.append(propertyName, item[propertyName])
+          }
+        } else {
+          form.append(propertyName, item[propertyName])
+        }
       }
       var options = {
         url: url + '/upload',
