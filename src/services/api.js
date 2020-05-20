@@ -130,6 +130,46 @@ let api = new Vue({
       })
     },
 
+    // SAVE
+    order (url, item, _callback) {
+      // Degub
+      this.$log.debug('API', url)
+      // Data
+      var data = item
+      var options = {
+        url: url + '/order',
+        method: 'POST',
+        data: data
+      }
+      this.$http.axios(options).then((response) => {
+        // CallBack
+        _callback(response.data)
+        // Notify
+        if (this.$notify){
+          this.$notify({
+            group: 'global',
+            type: 'success',
+            title: 'Order',
+            text: 'Order element successfull!'
+          })
+        }
+      }, (error) => {
+        this.$log.info('SERVICES -> API -> order()')
+        this.$log.error(error)
+        // CallBack
+        _callback(null)
+        // Notify
+        if (this.$notify){
+          this.$notify({
+            group: 'global',
+            type: 'error',
+            title: 'Error',
+            text: 'Error on API'
+          })
+        }
+      })
+    },
+
     // UPLOAD
     upload (url, item, _callback) {
       // Degub

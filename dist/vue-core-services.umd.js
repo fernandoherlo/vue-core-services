@@ -5896,9 +5896,54 @@ var api = new external_commonjs_vue_commonjs2_vue_root_Vue_default.a({
         }
       });
     },
+    // SAVE
+    order: function order(url, item, _callback) {
+      var _this4 = this;
+
+      // Degub
+      this.$log.debug('API', url); // Data
+
+      var data = item;
+      var options = {
+        url: url + '/order',
+        method: 'POST',
+        data: data
+      };
+      this.$http.axios(options).then(function (response) {
+        // CallBack
+        _callback(response.data); // Notify
+
+
+        if (_this4.$notify) {
+          _this4.$notify({
+            group: 'global',
+            type: 'success',
+            title: 'Order',
+            text: 'Order element successfull!'
+          });
+        }
+      }, function (error) {
+        _this4.$log.info('SERVICES -> API -> order()');
+
+        _this4.$log.error(error); // CallBack
+
+
+        _callback(null); // Notify
+
+
+        if (_this4.$notify) {
+          _this4.$notify({
+            group: 'global',
+            type: 'error',
+            title: 'Error',
+            text: 'Error on API'
+          });
+        }
+      });
+    },
     // UPLOAD
     upload: function upload(url, item, _callback) {
-      var _this4 = this;
+      var _this5 = this;
 
       // Degub
       this.$log.debug('API', url); // Data
@@ -5930,8 +5975,8 @@ var api = new external_commonjs_vue_commonjs2_vue_root_Vue_default.a({
         _callback(response.data); // Notify
 
 
-        if (_this4.$notify) {
-          _this4.$notify({
+        if (_this5.$notify) {
+          _this5.$notify({
             group: 'global',
             type: 'warn',
             title: 'Upload',
@@ -5939,40 +5984,12 @@ var api = new external_commonjs_vue_commonjs2_vue_root_Vue_default.a({
           });
         }
       }, function (error) {
-        _this4.$log.info('SERVICES -> API -> upload()');
+        _this5.$log.info('SERVICES -> API -> upload()');
 
-        _this4.$log.error(error); // CallBack
+        _this5.$log.error(error); // CallBack
 
 
         _callback(null); // Notify
-
-
-        if (_this4.$notify) {
-          _this4.$notify({
-            group: 'global',
-            type: 'error',
-            title: 'Error',
-            text: 'Error on API'
-          });
-        }
-      });
-    },
-    // DOWNLOAD
-    download: function download(url, item) {
-      var _this5 = this;
-
-      // Degub
-      this.$log.debug('API', url);
-      var options = {
-        url: url + '/download/' + item.id,
-        method: 'GET'
-      };
-      this.$http.axios(options).then(function (response) {
-        window.open(response.data.url, '_blank');
-      }, function (error) {
-        _this5.$log.info('SERVICES -> API -> download()');
-
-        _this5.$log.error(error); // Notify
 
 
         if (_this5.$notify) {
@@ -5985,9 +6002,37 @@ var api = new external_commonjs_vue_commonjs2_vue_root_Vue_default.a({
         }
       });
     },
+    // DOWNLOAD
+    download: function download(url, item) {
+      var _this6 = this;
+
+      // Degub
+      this.$log.debug('API', url);
+      var options = {
+        url: url + '/download/' + item.id,
+        method: 'GET'
+      };
+      this.$http.axios(options).then(function (response) {
+        window.open(response.data.url, '_blank');
+      }, function (error) {
+        _this6.$log.info('SERVICES -> API -> download()');
+
+        _this6.$log.error(error); // Notify
+
+
+        if (_this6.$notify) {
+          _this6.$notify({
+            group: 'global',
+            type: 'error',
+            title: 'Error',
+            text: 'Error on API'
+          });
+        }
+      });
+    },
     // DELETE
     delete: function _delete(url, item, _callback, wait, id_parent) {
-      var _this6 = this;
+      var _this7 = this;
 
       // Degub
       this.$log.debug('API', url);
@@ -6009,8 +6054,8 @@ var api = new external_commonjs_vue_commonjs2_vue_root_Vue_default.a({
         _callback(response.data); // Notify
 
 
-        if (_this6.$notify) {
-          _this6.$notify({
+        if (_this7.$notify) {
+          _this7.$notify({
             group: 'global',
             type: 'success',
             title: 'Delete',
@@ -6018,13 +6063,13 @@ var api = new external_commonjs_vue_commonjs2_vue_root_Vue_default.a({
           });
         }
       }, function (error) {
-        _this6.$log.info('SERVICES -> API -> delete()');
+        _this7.$log.info('SERVICES -> API -> delete()');
 
-        _this6.$log.error(error); // Notify
+        _this7.$log.error(error); // Notify
 
 
-        if (_this6.$notify) {
-          _this6.$notify({
+        if (_this7.$notify) {
+          _this7.$notify({
             group: 'global',
             type: 'error',
             title: 'Error',
