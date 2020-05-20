@@ -135,7 +135,9 @@ let api = new Vue({
       // Degub
       this.$log.debug('API', url)
       // Data
-      var data = item
+      var data = {
+        'order': item
+      }
       var options = {
         url: url + '/order',
         method: 'POST',

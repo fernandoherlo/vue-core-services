@@ -5903,7 +5903,9 @@ var api = new external_commonjs_vue_commonjs2_vue_root_Vue_default.a({
       // Degub
       this.$log.debug('API', url); // Data
 
-      var data = item;
+      var data = {
+        'order': item
+      };
       var options = {
         url: url + '/order',
         method: 'POST',
