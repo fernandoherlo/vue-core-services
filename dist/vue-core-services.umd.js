@@ -5910,7 +5910,7 @@ var api = new external_commonjs_vue_commonjs2_vue_root_Vue_default.a({
         if (propertyName == 'file') {
           if (item[propertyName].length > 0) {
             for (var i = 0; i < item[propertyName].length; i++) {
-              form.append(propertyName, item[propertyName][i]);
+              form.append(propertyName + '[' + i + ']', item[propertyName][i]);
             }
           } else {
             form.append(propertyName, item[propertyName]);

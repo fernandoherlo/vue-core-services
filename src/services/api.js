@@ -143,7 +143,7 @@ let api = new Vue({
           if (item[propertyName].length > 0) {
 
             for (var i = 0; i < item[propertyName].length; i++) {
-              form.append(propertyName, item[propertyName][i])
+              form.append(propertyName + '[' + i +']', item[propertyName][i])
             }
 
           } else {
