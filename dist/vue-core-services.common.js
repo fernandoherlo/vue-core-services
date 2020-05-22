@@ -6273,6 +6273,25 @@ var methodsHelper = {
   search: function search(haystack, needle) {
     return haystack.toString().replace(new RegExp('(' + this.pregQuote(needle) + ')', 'ig'), '<mark class="highlight">$1</mark>');
   },
+  // Slug
+  strslug: function strslug(string) {
+    var separator = '-'; // Convert all dashes/underscores into separator
+
+    var flip = separator == '-' ? '_' : '-';
+    string = string.replace(flip, separator); // Remove all characters that are not the separator, letters, numbers, or whitespace.
+
+    string = string.toLowerCase().replace(new RegExp('[^a-z0-9' + separator + '\\s]', 'g'), ''); // Replace all separator characters and whitespace by a single separator
+
+    string = string.replace(new RegExp('[' + separator + '\\s]+', 'g'), separator);
+    return string.replace(new RegExp('^[' + separator + '\\s]+|[' + separator + '\\s]+$', 'g'), '');
+  },
+  // nl -> br
+  nltobr: function nltobr(string) {
+    if (string) {
+      return string.replace(/(?:\r\n|\r|\n)/g, '<br>');
+    }
+  },
+  // print
   print: function print() {
     window.print();
   }
