@@ -15,12 +15,12 @@ import Vue from 'vue'
 let methodsHelper = {
   // Number
   isNumber (n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
+    return !isNaN(parseFloat(n)) && isFinite(n)
   },
   // decimal
   toDecimal (n) {
     if (n === undefined || n === null) return '';
-    return parseFloat(Math.round(n * 100) / 100).toFixed(2);
+    return parseFloat(Math.round(n * 100) / 100).toFixed(2)
   },
   toCurrency (number) {
     /*
@@ -39,8 +39,28 @@ let methodsHelper = {
       number = 0
     } 
     var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\D' : '$') + ')'
-    var num = number.toFixed(Math.max(0, ~~n));
-    return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ',')) + y;
+    var num = number.toFixed(Math.max(0, ~~n))
+    return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ',')) + y
+  },
+  labelExpense (expenses, offer, price, margin) {
+    if (!margin) {
+      margin = 500
+    }
+    var expensesLabel = 'success'
+    if (offer > 0) {
+      if (expenses > offer) {
+        expensesLabel = 'danger'
+      } else if ((expenses + margin) > offer) {
+        expensesLabel = 'warning'
+      }
+    } else {
+      if (expenses > price) {
+        expensesLabel = 'danger'
+      } else if ((expenses + margin) > price) {
+        expensesLabel = 'warning'
+      }
+    }
+    return expensesLabel
   },
   toTimeFromMs (millisec) {
     var seconds = (millisec / 1000).toFixed(1)

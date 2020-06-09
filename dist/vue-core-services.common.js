@@ -6214,6 +6214,29 @@ var methodsHelper = {
     var num = number.toFixed(Math.max(0, ~~n));
     return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ',')) + y;
   },
+  labelExpense: function labelExpense(expenses, offer, price, margin) {
+    if (!margin) {
+      margin = 500;
+    }
+
+    var expensesLabel = 'success';
+
+    if (offer > 0) {
+      if (expenses > offer) {
+        expensesLabel = 'danger';
+      } else if (expenses + margin > offer) {
+        expensesLabel = 'warning';
+      }
+    } else {
+      if (expenses > price) {
+        expensesLabel = 'danger';
+      } else if (expenses + margin > price) {
+        expensesLabel = 'warning';
+      }
+    }
+
+    return expensesLabel;
+  },
   toTimeFromMs: function toTimeFromMs(millisec) {
     var seconds = (millisec / 1000).toFixed(1);
     var minutes = (millisec / (1000 * 60)).toFixed(1);
