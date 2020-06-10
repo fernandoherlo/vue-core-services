@@ -6931,17 +6931,17 @@ var acl = new external_commonjs_vue_commonjs2_vue_root_Vue_default.a({
                 return new Promise(function (resolve, reject) {
                   _this2.$auth.getUserInfo('https://dmenta.io/app_metadata').then(function (app_metadata) {
                     if (_this2.components[component] === 'undefined') {
-                      reject();
+                      reject(component);
                     }
 
                     if (_this2.components[component][app_metadata.role] === 'undefined') {
-                      reject();
+                      reject(component);
                     }
 
                     if (_this2.components[component][app_metadata.role][permission]) {
-                      resolve();
+                      resolve(component);
                     } else {
-                      reject();
+                      reject(component);
                     }
                   });
                 });
