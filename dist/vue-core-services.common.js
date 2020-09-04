@@ -6250,7 +6250,7 @@ var methodsHelper = {
     } else if (hours < 24) {
       return hours + "h";
     } else {
-      return days + "d";
+      return Math.round(days) + "d";
     }
   },
   toHmsFromMs: function toHmsFromMs(duration) {
